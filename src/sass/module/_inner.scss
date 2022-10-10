@@ -1,0 +1,15 @@
+@use "global" as *;
+
+.inner {
+  width: 100%;
+  max-width: $inner-1280;
+  padding-right: $padding-sp; //20
+  padding-left: $padding-sp; //20
+  margin-right: auto;
+  margin-left: auto;
+  @include mq("md") {
+    max-width: $inner-1280 + strip-unit($padding-pc) * 2;
+    padding-right: $padding-pc; //25
+    padding-left: $padding-pc; //25
+  }
+}

@@ -1,0 +1,127 @@
+@use "sass:math";
+//変数指定
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// インナー幅設定
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// コンテンツのインナー幅（最も共通の幅が多い部分）
+$inner-1280: 1280px;
+$inner-1190: 1190px;
+$inner-1042: 1042px;
+$inner-1115: 1115px;
+// ※キャンパス幅ではなくインナーの幅を指す
+
+// 余白
+$padding-pc: 25px;
+$padding-sp: 20px;
+// ※PC時：デザインカンプの余白の幅ではない。PC時は通常25pxで大丈夫！
+
+
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// フォント設定
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * font-family
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+ @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
+ $font-family-en: 'Lora', serif;
+ 
+ // @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
+// 標準搭載Mac
+$font-family-jp: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
+
+// @import url('https://fonts.googleapis.com/css2?family=hoge');
+// $font-family-en: 'Lato', sans-serif; 
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+$font-family-Allura:'Allura', cursive ;
+
+// ※検証ツールでしっかり反映されているか確認する
+
+body {
+  font-family: $font-family-jp;
+}
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * font-weight
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+$fw-300: 300;
+$fw-400: 400;
+$fw-700: 700;
+
+/* ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ * font-size
+ * ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+ // 普通のテキスト
+//  $font-size-normal:16px;
+//  $font-size-small:14px;
+//  section
+// $font-size-section-titleEn:56px;
+// $font-size-section-titleJp:16px;
+
+// h2 見出し
+// $font-size-catchCopyBig:37px;
+// $font-size-catchCopy:32px;
+
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// 色の指定
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+//色指定（共通性のあるものは出来る限り指定すると良い）
+// ベース背景
+$color-bg-glay:#fafafa;
+$color-bg-white:#fafafa;
+$color-bg-gold:#8B6C3A;
+$color-bg-black:#393327;
+
+// テキスト色
+$color-font-black:#393327;
+$color-font-white:#fff;
+$color-font-gold:#8B6C3A;
+
+
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// メディアクエリとブレークポイントの設定
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+//ブレイクポイント
+$breakpoints: (
+  xs: 0,
+  sm: 600,
+  md: 768,
+  lg: 1024,
+  xl: 1440,
+  xxl: 1700,
+);
+
+
+//メディアクエリー
+$mediaquerys: (
+  xs: "screen and (min-width: #{map-get($breakpoints,'xs')}px)",
+  sm: "screen and (min-width: #{map-get($breakpoints,'sm')}px)",
+  md: "screen and (min-width: #{map-get($breakpoints,'md')}px)",
+  lg: "screen and (min-width: #{map-get($breakpoints,'lg')}px)",
+  xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+  xxl: "screen and (min-width: #{map-get($breakpoints,'xxl')}px)",
+);
+
+// @include mq(){}で書くとブレークポイントが反映される（初期値はmd）
+@mixin mq($mediaquery: md) {
+  @media #{map-get($mediaquerys, $mediaquery)} {
+    @content;
+  }
+}
+
+// remへの計算式（16pxを基準としている。10pxを基準とする場合は16を10に変更する）
+@function rem($pixels) {
+  @return math.div($pixels, 16) * 1rem;
+}
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// 
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー

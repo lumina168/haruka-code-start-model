@@ -1,0 +1,119 @@
+/* リキッドレイアウト対応 */
+@use "global" as *;
+
+html {
+  //~375px
+  @media (max-width: 375px) {
+    font-size: vw(375, 16);
+  }
+
+  //375px~787px
+  font-size: 16px;
+
+  @include mq("md") {
+    font-size: vw(strip-unit($inner-1280), 16);
+  }
+
+  //inner~max-screen
+  @media (min-width: $inner-1280) {
+    font-size: 16px;
+  }
+}
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+/* pcの電話番号発信対応 */
+a[href^="tel:"] {
+  @include mq("md") {
+    pointer-events: none;
+  }
+}
+
+/* ホバー */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s;
+  @include mq("md") {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+//  幅を指定時padding、border含めて計算してくれる
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// z-index
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+.header {
+  z-index: 1000;
+}
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+////////////////////
+// 非表示設定
+////////////////////
+
+//768px以上を表示
+.is-desktop {
+  display: none;
+  @include mq("md") {
+    display: block;
+  }
+}
+
+//768以上非表示
+.is-mobile {
+  @include mq("md") {
+    display: none;
+  }
+}
+
+
+
+
+// 飛び出していて謎の余白が発生した時使用
+// * {
+//     outline: 2px solid red;
+// }
+
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+//非表示設定
+// (tips).is-pc  .is-sp というクラスを付けて
+// 各クラスがついてる時には表示させないようにしておく
+// spの時にはpcは表示させないとしておく
+
+
+// 600px以下
+@include mq (xs) {
+  .is-s {
+      display: none;
+  }
+}
+
+// 768px以上
+@include mq (md) {
+  .is-md {
+      display: none;
+  }
+}
+
+// 1100px以上
+@include mq (lg) {
+  .is-lg {
+      display: none;
+  }
+}
+
+// 1440px以上
+@include mq (xl) {
+  .is-xl {
+      display: none;
+  }
+}
+
